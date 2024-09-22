@@ -1,0 +1,72 @@
+:root {
+  --dark-surface-00: #121212;
+  --dark-surface-01: #1d1d1d;
+  --dark-surface-02: #212121;
+  --dark-surface-03: #242424;
+  --dark-surface-04: #262626;
+  --dark-surface-06: #2c2c2c;
+  --dark-surface-08: #2d2d2d;
+  --dark-surface-12: #323232;
+  --dark-surface-16: #343434;
+  --dark-surface-24: #373737;
+  --dark-primary: #03dac5;
+  --dark-secondary: #b598f5;
+  --dark-color-high: rgb(255, 255, 255, 0.87);
+  --dark-color-medium: rgb(255, 255, 255, 0.6);
+  --dark-color-disabled: rgb(255, 255, 255, 0.38);
+  --dark-color-on-primary: #000000;
+  --dark-color-on-secondary: #000000;
+  --dark-shadow: 3px 3px 5px rgb(0, 0, 0, 0.4);
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+input[type="text"],
+input[type="number"] {
+  background-color: var(--dark-surface-01);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  padding: 0.4rem;
+  font-size: 1rem;
+  color: var(--dark-color-medium);
+}
+input[type="text"]:focus {
+  background-color: var(--dark-surface-02);
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+button {
+  border-radius: 5px;
+  padding: 0.4rem;
+  font-size: 1rem;
+  background-color: var(--dark-surface-01);
+  border: 1px solid var(--dark-secondary);
+  color: var(--dark-secondary);
+  min-width: 6rem;
+  cursor: pointer;
+}
+
+main {
+  /* margin-left: 5.2rem; */
+  height: 100vh;
+  overflow: auto;
+}
