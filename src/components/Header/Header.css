@@ -1,7 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Chewy&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Anton+SC&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Bungee&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Chewy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bungee&display=swap"); */
 
 @import url("https://fonts.googleapis.com/css2?family=Bowlby+One&display=swap");
 header {
@@ -15,7 +13,7 @@ header {
       align-items: center;
       gap: 0.6rem;
       color: var(--dark-secondary);
-
+      line-height: 1rem;
       .brand--logo {
         height: 3rem;
         svg {
@@ -26,8 +24,6 @@ header {
       .brand--name {
         font-size: 3rem;
         /* font-family: "Chewy", system-ui; */
-        /* font-family: "Anton SC", sans-serif; */
-        /* font-family: "Anton", sans-serif; */
         /* font-family: "Bungee", sans-serif; */
         font-family: "Bowlby One", sans-serif;
         font-weight: 400;

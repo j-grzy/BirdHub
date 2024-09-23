@@ -8,9 +8,8 @@ import FilterTimeSpan from "./FilterTimeSpan.jsx";
 import FilterSpecies from "./FilterSpecies.jsx";
 
 export default function RecentFilters() {
-  const {data, setData, location, setLocation, distance, setDistance, onlyNotable, setOnlyNotable, timeSpan, setTimeSpan} = useContext(RecentContext);
+  const {data, setData, location, distance, onlyNotable, timeSpan} = useContext(RecentContext);
   const {language} = useContext(LanguageContext);
-  const [locVal, setLocVal] = useState("");
 
   const ebirdHeaders = new Headers();
   ebirdHeaders.append("X-eBirdApiToken", ebirdKey);

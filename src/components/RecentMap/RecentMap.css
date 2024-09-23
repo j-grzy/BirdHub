@@ -70,7 +70,6 @@
   .leaflet-popup-content-wrapper {
     background-color: var(--dark-surface-01);
     box-shadow: var(--dark-shadow);
-    /* border: var(--dark-border-thin); */
     border: 1px solid rgba(255, 255, 0, 0.6);
 
     .leaflet-popup-content {
@@ -82,7 +81,6 @@
   .leaflet-popup-tip {
     background-color: var(--dark-surface-01);
     box-shadow: var(--dark-shadow);
-    /* border: var(--dark-border-thin); */
     border: 1px solid rgba(255, 255, 0, 0.6);
   }
 }

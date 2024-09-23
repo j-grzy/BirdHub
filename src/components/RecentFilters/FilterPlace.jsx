@@ -4,7 +4,7 @@ import {LanguageContext} from "../../contexts/LanguageContext.jsx";
 import "./FilterPlace.css";
 
 export default function RecentFilters() {
-  const {data, setData, location, setLocation, distance, setDistance, onlyNotable, setOnlyNotable, timeSpan, setTimeSpan} = useContext(RecentContext);
+  const {setLocation, distance, setDistance} = useContext(RecentContext);
   const {language} = useContext(LanguageContext);
   const [locVal, setLocVal] = useState("");
 

@@ -1,5 +1,6 @@
 .recent-results-container {
-  height: 50%;
+  height: 30%;
+  flex-grow: 1;
   border-radius: 5px;
   display: flex;
   flex-direction: column;

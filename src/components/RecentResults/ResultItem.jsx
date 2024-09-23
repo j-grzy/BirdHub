@@ -1,5 +1,3 @@
-import React, {useRef, useState, useEffect, useContext} from "react";
-// import {RecentContext} from "../../contexts/RecentContext.jsx";
 import "./ResultItem.css";
 import {IoTimeOutline} from "react-icons/io5";
 import {CiCalendar} from "react-icons/ci";

@@ -4,7 +4,7 @@ import {LanguageContext} from "../../contexts/LanguageContext.jsx";
 import "./FilterSpecies.css";
 
 export default function FilterTimeSpan() {
-  const {data, setData, location, setLocation, distance, setDistance, onlyNotable, setOnlyNotable, timeSpan, setTimeSpan} = useContext(RecentContext);
+  const {data, setData, onlyNotable, setOnlyNotable} = useContext(RecentContext);
   const {language} = useContext(LanguageContext);
 
   return (

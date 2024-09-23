@@ -4,7 +4,7 @@ import {LanguageContext} from "../../contexts/LanguageContext.jsx";
 import "./RecentFilters.css";
 
 export default function FilterTimeSpan() {
-  const {data, setData, location, setLocation, distance, setDistance, onlyNotable, setOnlyNotable, timeSpan, setTimeSpan} = useContext(RecentContext);
+  const {timeSpan, setTimeSpan} = useContext(RecentContext);
   const {language} = useContext(LanguageContext);
 
   return (

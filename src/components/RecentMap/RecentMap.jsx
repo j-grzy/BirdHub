@@ -56,12 +56,13 @@ export default function RecentMap() {
     const map = useMap();
     useEffect(() => {
       if (location) {
-        const bbox = L.latLng(parseFloat(location.lat), parseFloat(location.lon)).toBounds(distance * 1000);
+        const bbox = L.latLng(parseFloat(location.lat), parseFloat(location.lon)).toBounds(parseFloat(distance) * 1000);
         map.flyToBounds(bbox);
       }
     }, [location, distance]);
     return null;
   };
+  // TODO: track center-coords and zoomlevel on-map-change; on theme or language change, keep map view
   return (
     <MapContainer
       className="recent-map"
@@ -83,6 +84,7 @@ export default function RecentMap() {
           <Marker icon={myIcon} key={index} position={[item.lat, item.lng]}>
             <Popup maxWidth="100 px" maxHeight="auto">
               <ul>
+                {/* TODO: merge items at exact same location to list in one popup; but keep marker-number for clustering */}
                 <ResultItem item={item} className={"result-item-popup"} />
               </ul>
             </Popup>

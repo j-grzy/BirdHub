@@ -1,5 +1,5 @@
 .filters-container {
-  height: 50%;
+  max-height: 70%;
   background-color: var(--dark-surface-01);
   border: var(--dark-border-thin);
   border-radius: 5px;

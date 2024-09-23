@@ -1,7 +1,6 @@
 import React, {useContext, useState, useRef, useEffect} from "react";
 import "./LanguageSwitcher.css";
 import {LanguageContext} from "../../contexts/LanguageContext.jsx";
-
 import {FaAngleDown} from "react-icons/fa6";
 import {HiOutlineGlobeAlt} from "react-icons/hi2";
 
