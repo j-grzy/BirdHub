@@ -30,7 +30,7 @@ export default function RecentResults() {
         {data.length > 0 ? (
           <ul>
             {data.map((item, index) => {
-              return <ResultItem index={index} item={item} />;
+              return <ResultItem key={index} item={item} className={"result-item-list"} />;
             })}
           </ul>
         ) : (

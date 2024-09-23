@@ -5,10 +5,10 @@ import {IoTimeOutline} from "react-icons/io5";
 import {CiCalendar} from "react-icons/ci";
 import {CiLocationOn} from "react-icons/ci";
 
-export default function ResultItem({index, item}) {
+export default function ResultItem({item, className}) {
   return (
-    <li key={index}>
-      <div className="result-item">
+    <li>
+      <div className={"result-item " + className}>
         <div className="species-com-name">
           {item.comName} {item.howMany ? <span className="species-count">({item.howMany})</span> : null}
         </div>

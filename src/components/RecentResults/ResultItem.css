@@ -1,9 +1,4 @@
 .result-item {
-  background-color: var(--dark-surface-02);
-  border-radius: 5px;
-  box-shadow: var(--dark-shadow);
-  border: var(--dark-border-thin);
-  padding: 0.6rem;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
@@ -30,5 +25,16 @@
     display: flex;
     gap: 1rem;
     align-items: center;
+    .item-info--icon {
+      width: 16px;
+    }
   }
+}
+
+.result-item-list {
+  background-color: var(--dark-surface-02);
+  border-radius: 5px;
+  box-shadow: var(--dark-shadow);
+  border: var(--dark-border-thin);
+  padding: 0.6rem;
 }

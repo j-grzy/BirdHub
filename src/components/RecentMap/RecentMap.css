@@ -70,14 +70,25 @@
   .leaflet-popup-content-wrapper {
     background-color: var(--dark-surface-01);
     box-shadow: var(--dark-shadow);
-    border: var(--dark-border-thin);
+    /* border: var(--dark-border-thin); */
+    border: 1px solid rgba(255, 255, 0, 0.6);
+
     .leaflet-popup-content {
-      color: var(--dark-color-high);
+      ul {
+        list-style: none;
+      }
     }
   }
   .leaflet-popup-tip {
     background-color: var(--dark-surface-01);
     box-shadow: var(--dark-shadow);
-    border: var(--dark-border-thin);
+    /* border: var(--dark-border-thin); */
+    border: 1px solid rgba(255, 255, 0, 0.6);
+  }
+}
+
+.result-item-popup {
+  .item-info {
+    font-size: 0.8rem;
   }
 }

@@ -4,26 +4,46 @@ import {MapContainer, Marker, Popup, TileLayer, ZoomControl, useMap} from "react
 import L from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import {MapLibreTileLayer} from "./MapLibreTileLayer.tsx";
-// import outdoors from "../../assets/map-styles/outdoors.json";
-
 import {RecentContext} from "../../contexts/RecentContext.jsx";
+import {ThemeContext} from "../../contexts/ThemeContext.jsx";
 import customMarker from "../../assets/icons/marker-icon.png";
+import customMarkerRetina from "../../assets/icons/marker-icon-2x.png";
 import customMarkerShadow from "../../assets/icons/marker-shadow.png";
 import "./RecentMap.css";
-
-// delete L.Icon.Default.prototype._getIconUrl;
-
-// L.Icon.Default.mergeOptions({
-//   iconRetinaUrl: import("leaflet/dist/images/marker-icon-2x.png"),
-//   iconUrl: import("leaflet/dist/images/marker-icon.png"),
-//   shadowUrl: import("leaflet/dist/images/marker-shadow.png"),
-// });
+import ResultItem from "../RecentResults/ResultItem.jsx";
 
 export default function RecentMap() {
   const {data, location, distance} = useContext(RecentContext);
+  const {theme} = useContext(ThemeContext);
+  const [mapStyleUrl, setMapStyleUrl] = useState("https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json");
+  const [mapStyleAttribution, setMapStyleAttribution] = useState(
+    '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
+  );
+
+  useEffect(() => {
+    if (theme.class === "dark") {
+      setMapStyleUrl("https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json");
+      setMapStyleAttribution(
+        '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
+      );
+    }
+    if (theme.class === "light") {
+      setMapStyleUrl("https://tiles.stadiamaps.com/styles/alidade_smooth.json");
+      setMapStyleAttribution(
+        '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
+      );
+    }
+    if (theme.class === "high-contrast") {
+      setMapStyleUrl("https://tiles.stadiamaps.com/styles/stamen_toner.json");
+      setMapStyleAttribution(
+        '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
+      );
+    }
+  }, [theme]);
 
   const myIcon = L.icon({
     iconUrl: customMarker,
+    iconRetinaUrl: customMarkerRetina,
     iconSize: [25, 41],
     iconAnchor: [12, 0],
     popupAnchor: [0, 0],
@@ -57,17 +77,14 @@ export default function RecentMap() {
       scrollWheelZoom={true}>
       <ZoomControl position="bottomright" />
       <ChangeView />
-      <MapLibreTileLayer
-        attribution='&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
-        url="https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json"
-      />
+      <MapLibreTileLayer attribution={mapStyleAttribution} url={mapStyleUrl} />
       <MarkerClusterGroup>
         {data.map((item, index) => (
           <Marker icon={myIcon} key={index} position={[item.lat, item.lng]}>
-            <Popup>
-              {item.comName}
-              <br />
-              {item.locName}
+            <Popup maxWidth="100 px" maxHeight="auto">
+              <ul>
+                <ResultItem item={item} className={"result-item-popup"} />
+              </ul>
             </Popup>
           </Marker>
         ))}
