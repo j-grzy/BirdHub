@@ -1,0 +1,83 @@
+.recent-map {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  inset: 0;
+  background-color: var(--dark-surface-01);
+  border: var(--dark-border-thin);
+  border-radius: 5px;
+  box-shadow: var(--dark-shadow);
+  leaflet-control-zoom.leaflet-bar.leaflet-control {
+    box-shadow: var(--dark-shadow);
+    border: 2var (--dark-border-thin);
+  }
+  a.leaflet-control-zoom-in {
+    background-color: var(--dark-surface-00);
+    border-bottom: var(--dark-border-thin);
+    color: var(--dark-color-medium);
+  }
+  a.leaflet-control-zoom-out {
+    background-color: var(--dark-surface-00);
+    color: var(--dark-color-medium);
+  }
+  a.leaflet-control-zoom-in:hover {
+    color: var(--dark-secondary);
+  }
+  a.leaflet-control-zoom-out:hover {
+    color: var(--dark-secondary);
+  }
+  .leaflet-control-attribution.leaflet-control {
+    background-color: var(--dark-surface-00);
+    color: var(--dark-color-medium);
+    a {
+      color: var(--dark-secondary);
+      opacity: 0.8;
+    }
+    a:hover {
+      opacity: 1;
+    }
+  }
+  .leaflet-marker-icon.marker-cluster.marker-cluster-small {
+    background-color: rgba(255, 255, 0, 0.8);
+    div {
+      background-color: rgba(255, 255, 0, 0.8);
+      span {
+        font-size: 0.8rem;
+        color: #000;
+      }
+    }
+  }
+  .leaflet-marker-icon.marker-cluster.marker-cluster-medium {
+    background-color: rgba(255, 208, 0, 0.8);
+    div {
+      background-color: rgba(255, 208, 0, 0.8);
+      span {
+        font-size: 0.8rem;
+        color: #000;
+      }
+    }
+  }
+  .leaflet-marker-icon.marker-cluster.marker-cluster-large {
+    background-color: rgba(255, 208, 0, 0.8);
+    div {
+      background-color: rgba(255, 208, 0, 0.8);
+      span {
+        font-size: 0.8rem;
+        color: #000;
+      }
+    }
+  }
+  .leaflet-popup-content-wrapper {
+    background-color: var(--dark-surface-01);
+    box-shadow: var(--dark-shadow);
+    border: var(--dark-border-thin);
+    .leaflet-popup-content {
+      color: var(--dark-color-high);
+    }
+  }
+  .leaflet-popup-tip {
+    background-color: var(--dark-surface-01);
+    box-shadow: var(--dark-shadow);
+    border: var(--dark-border-thin);
+  }
+}

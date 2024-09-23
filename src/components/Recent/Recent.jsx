@@ -1,6 +1,6 @@
-import RecentFilters from "./RecentFilters.jsx";
-import RecentMap from "./RecentMap";
-import RecentResults from "./RecentResults.jsx";
+import RecentFilters from "../RecentFilters/RecentFilters.jsx";
+import RecentMap from "../RecentMap/RecentMap.jsx";
+import RecentResults from "../RecentResults/RecentResults.jsx";
 import RecentProvider from "../../contexts/RecentContext.jsx";
 import "./Recent.css";
 
@@ -8,9 +8,13 @@ export default function Recent() {
   return (
     <RecentProvider>
       <div className="recent">
-        <RecentFilters />
-        <RecentMap />
-        <RecentResults />
+        <div className="recent-column">
+          <RecentFilters />
+          <RecentResults />
+        </div>
+        <div className="map-column">
+          <RecentMap />
+        </div>
       </div>
     </RecentProvider>
   );

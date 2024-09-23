@@ -1,0 +1,45 @@
+.lang-container {
+  color: var(--dark-color-medium);
+  height: 2rem;
+  position: relative;
+
+  .langMenu-toggleButton {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    cursor: pointer;
+    .lang--icon svg {
+      font-size: 1.4rem;
+    }
+    &:hover {
+      color: var(--dark-secondary);
+    }
+  }
+  .lang-menu {
+    position: absolute;
+    right: 0;
+    z-index: 1000;
+    background-color: var(--dark-surface-03);
+    box-shadow: var(--dark-shadow);
+    border: var(--dark-border-thin);
+    border-radius: 5px;
+    padding: 1rem 2rem;
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      li {
+        cursor: pointer;
+        &:hover {
+          color: var(--dark-secondary);
+        }
+      }
+      li.lang-checked {
+        color: var(--dark-secondary);
+        text-decoration: underline;
+        text-underline-offset: 0.4rem;
+      }
+    }
+  }
+}

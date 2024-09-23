@@ -11,36 +11,45 @@
   --dark-surface-24: #373737;
   --dark-primary: #03dac5;
   --dark-secondary: #b598f5;
+  --dark-secondary-opaque: hwb(259 60% 4% / 0.2);
   --dark-color-high: rgb(255, 255, 255, 0.87);
   --dark-color-medium: rgb(255, 255, 255, 0.6);
   --dark-color-disabled: rgb(255, 255, 255, 0.38);
   --dark-color-on-primary: #000000;
   --dark-color-on-secondary: #000000;
   --dark-shadow: 3px 3px 5px rgb(0, 0, 0, 0.4);
+  --dark-border-thin: 1px solid rgba(255, 255, 255, 0.1);
+  --dark-border-input: 1px solid rgba(255, 255, 255, 0.4);
 }
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scrollbar-color: var(--dark-surface-16) var(--dark-surface-00) !important;
+  scrollbar-width: thin !important;
 }
-
 body {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  background-color: var(--dark-surface-00);
+  color: #fff;
 }
 
 input[type="text"],
 input[type="number"] {
   background-color: var(--dark-surface-01);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: var(--dark-border-input);
   border-radius: 5px;
   padding: 0.4rem;
   font-size: 1rem;
   color: var(--dark-color-medium);
 }
-input[type="text"]:focus {
-  background-color: var(--dark-surface-02);
+input[type="text"]:focus,
+input[type="number"]:focus {
+  background-color: var(--dark-surface-00);
+  color: var(--dark-color-high);
 }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -48,25 +57,121 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 /* Firefox */
 input[type="number"] {
   appearance: textfield;
   -moz-appearance: textfield;
 }
-button {
-  border-radius: 5px;
-  padding: 0.4rem;
-  font-size: 1rem;
+input[type="range"] {
+  width: 100%;
+  margin: 3.3px 0;
   background-color: var(--dark-surface-01);
-  border: 1px solid var(--dark-secondary);
-  color: var(--dark-secondary);
-  min-width: 6rem;
+  -webkit-appearance: none;
+  appearance: none;
+}
+input[type="range"]:focus {
+  outline: none;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  background: var(--dark-secondary);
+  border: var(--dark-border-input);
+  border-radius: 25px;
+  width: 100%;
+  height: 9.4px;
   cursor: pointer;
 }
+input[type="range"]::-webkit-slider-thumb {
+  margin-top: -5.4px;
+  width: 18px;
+  height: 18px;
+  background: var(--dark-surface-00);
+  border: var(--dark-border-input);
+  border-radius: 12px;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+input[type="range"]:focus::-webkit-slider-runnable-track {
+  background: var(--dark-secondary);
+}
+input[type="range"]::-moz-range-track {
+  background: var(--dark-surface-01);
+  border: var(--dark-border-input);
+  border-radius: 25px;
+  width: 100%;
+  height: 9.4px;
+  cursor: pointer;
+}
+input[type="range"]::-moz-range-progress {
+  background-color: var(--dark-secondary);
+  height: 9.4px;
+  border-radius: 25px;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: var(--dark-surface-00);
+  border: var(--dark-border-input);
+  border-radius: 12px;
+  cursor: pointer;
+}
+input[type="range"]::-ms-track {
+  background: transparent;
+  border-color: transparent;
+  border-width: 7.4px 0;
+  color: transparent;
+  width: 100%;
+  height: 9.4px;
+  cursor: pointer;
+}
+input[type="range"]::-ms-fill-lower {
+  background: var(--dark-secondary);
+  border: var(--dark-border-input);
+  border-radius: 50px;
+}
+input[type="range"]::-ms-fill-upper {
+  background: var(--dark-surface-00);
+  border: var(--dark-border-input);
+  border-radius: 50px;
+}
+input[type="range"]::-ms-thumb {
+  width: 18px;
+  height: 18px;
+  background: var(--dark-surface-00);
+  border: var(--dark-border-input);
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 0px;
+}
+input[type="range"]:focus::-ms-fill-lower {
+  background: var(--dark-secondary);
+}
+input[type="range"]:focus::-ms-fill-upper {
+  background: var(--dark-surface-00);
+}
+@supports (-ms-ime-align: auto) {
+  input[type="range"] {
+    margin: 0;
+  }
+}
 
+::-webkit-scrollbar {
+  width: 10px;
+  background: var(--dark-surface-00);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--dark-surface-16);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dark-surface-24);
+}
+.wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
 main {
   /* margin-left: 5.2rem; */
-  height: 100vh;
   overflow: auto;
+  flex: 1;
 }

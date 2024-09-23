@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Chewy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton+SC&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bungee&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Bowlby+One&display=swap");
+header {
+  padding: 2rem 2rem 0;
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--dark-secondary);
+
+      .brand--logo {
+        height: 3rem;
+        svg {
+          height: 3rem;
+          width: 3rem;
+        }
+      }
+      .brand--name {
+        font-size: 3rem;
+        /* font-family: "Chewy", system-ui; */
+        /* font-family: "Anton SC", sans-serif; */
+        /* font-family: "Anton", sans-serif; */
+        /* font-family: "Bungee", sans-serif; */
+        font-family: "Bowlby One", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+    }
+    .site-settings {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+  }
+}

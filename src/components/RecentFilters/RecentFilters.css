@@ -1,0 +1,36 @@
+.filters-container {
+  height: 50%;
+  background-color: var(--dark-surface-01);
+  border: var(--dark-border-thin);
+  border-radius: 5px;
+  box-shadow: var(--dark-shadow);
+  overflow: auto;
+  .filter {
+    padding: 1rem;
+    .filter-label {
+      color: var(--dark-color-high);
+      display: block;
+      font-size: 1rem;
+      border-bottom: var(--dark-border-thin);
+      padding: 0.2rem;
+      margin: 0 0 1rem;
+    }
+    button {
+      border-radius: 5px;
+      padding: 0.4rem;
+      font-size: 1rem;
+      background-color: var(--dark-surface-01);
+      border: 1px solid var(--dark-secondary);
+      color: var(--dark-secondary);
+      cursor: pointer;
+    }
+    button:hover {
+      color: var(--dark-surface-01);
+      background-color: var(--dark-secondary);
+    }
+  }
+}
+.timespan-inner {
+  display: flex;
+  gap: 1rem;
+}

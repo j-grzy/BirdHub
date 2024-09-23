@@ -2,6 +2,7 @@ import "./App.css";
 // import {Routes, Route} from "react-router-dom";
 // import Navbar from "./components/Navbar";
 import Main from "./components/Main";
+import Header from "./components/Header/Header.jsx";
 // import Dashboard from "./components/Dashboard";
 // import Recent from "./components/Recent/Recent";
 // import Observations from "./components/Observations";
@@ -9,6 +10,7 @@ import Main from "./components/Main";
 // import Games from "./components/Games";
 // import Weather from "./components/Weather";
 // import Species from "./components/Species";
+import LanguageProvider from "./contexts/LanguageContext";
 
 function App() {
   return (
@@ -27,7 +29,11 @@ function App() {
             <Route path="*" element={<Dashboard />} />
           </Route>
         </Routes> */}
-        <Main />
+
+        <LanguageProvider>
+          <Header />
+          <Main />
+        </LanguageProvider>
       </div>
     </>
   );

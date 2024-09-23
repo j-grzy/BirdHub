@@ -1,0 +1,59 @@
+.filter-notable {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-around;
+  .filter-notable--item {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    gap: 1rem;
+    label {
+      color: var(--dark-color-medium);
+      position: relative;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      position: relative;
+      height: 1.2rem;
+      width: 1.2rem;
+      z-index: 1;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .custom-radio {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 1.2rem;
+      width: 1.2rem;
+      background-color: var(--dark-surface-02);
+      border: var(--dark-border-input);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    input[type="radio"]:checked ~ .custom-radio {
+      background-color: var(--dark-secondary);
+    }
+
+    .custom-radio:after {
+      content: "";
+      position: absolute;
+      width: 0.6rem;
+      height: 0.6rem;
+      border-radius: 50%;
+      background: var(--dark-surface-00);
+      border: var(--dark-border-input);
+    }
+  }
+  .filter-notable--item:hover {
+    label {
+      color: var(--dark-secondary);
+    }
+    input ~ .custom-radio {
+      border-color: var(--dark-secondary);
+    }
+  }
+}

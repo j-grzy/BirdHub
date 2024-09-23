@@ -7,6 +7,9 @@ import {MapLibreTileLayer} from "./MapLibreTileLayer.tsx";
 // import outdoors from "../../assets/map-styles/outdoors.json";
 
 import {RecentContext} from "../../contexts/RecentContext.jsx";
+import customMarker from "../../assets/icons/marker-icon.png";
+import customMarkerShadow from "../../assets/icons/marker-shadow.png";
+import "./RecentMap.css";
 
 // delete L.Icon.Default.prototype._getIconUrl;
 
@@ -19,18 +22,19 @@ import {RecentContext} from "../../contexts/RecentContext.jsx";
 export default function RecentMap() {
   const {data, location, distance} = useContext(RecentContext);
 
-  // Set initials
-  // const center = [51.3406321, 12.3747329];
-  // const zoom = 13;
+  const myIcon = L.icon({
+    iconUrl: customMarker,
+    iconSize: [25, 41],
+    iconAnchor: [12, 0],
+    popupAnchor: [0, 0],
+    shadowUrl: customMarkerShadow,
+    shadowSize: [41, 41],
+    shadowAnchor: [12, 0],
+  });
 
-  // recenter map to new coordinates
   const ChangeView = () => {
     const map = useMap();
     useEffect(() => {
-      // Fly to coordinates and set new zoom level
-      // map.flyTo([location.lat, location.lon], 13);
-
-      // with bounds:
       if (location) {
         const bbox = L.latLng(parseFloat(location.lat), parseFloat(location.lon)).toBounds(distance * 1000);
         map.flyToBounds(bbox);
@@ -59,7 +63,7 @@ export default function RecentMap() {
       />
       <MarkerClusterGroup>
         {data.map((item, index) => (
-          <Marker key={index} position={[item.lat, item.lng]}>
+          <Marker icon={myIcon} key={index} position={[item.lat, item.lng]}>
             <Popup>
               {item.comName}
               <br />
