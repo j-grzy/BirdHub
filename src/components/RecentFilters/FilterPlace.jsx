@@ -1,14 +1,15 @@
-import React, {useRef, useState, useEffect, useContext} from "react";
-import {RecentContext} from "../../contexts/RecentContext.jsx";
-import {LanguageContext} from "../../contexts/LanguageContext.jsx";
+import React, { useRef, useState, useEffect, useContext } from "react";
+import { RecentContext } from "../../contexts/RecentContext.jsx";
+import { LanguageContext } from "../../contexts/LanguageContext.jsx";
 import "./FilterPlace.css";
 
 export default function RecentFilters() {
-  const {setLocation, distance, setDistance} = useContext(RecentContext);
-  const {language} = useContext(LanguageContext);
+  const { setLocation, distance, setDistance } = useContext(RecentContext);
+  const { language } = useContext(LanguageContext);
   const [locVal, setLocVal] = useState("");
 
-  function handleLoc() {
+  function handleLoc(ev) {
+    ev.preventDefault();
     if (locVal) {
       async function getLocation() {
         const param = locVal.replace(/\s,/, "%20");
@@ -29,17 +30,15 @@ export default function RecentFilters() {
   return (
     <div className="filter-place">
       <div className="filter-place--location">
-        <div className="filter location--search">
+        <form className="filter location--search" onSubmit={handleLoc}>
           <label htmlFor="location" className="filter-label">
             {language.code === "de" ? "Standort:" : "Location:"}
           </label>
           <div className="location--search-inner">
             <input type="text" name="location" id="location" placeholder="Search a place or address" val={locVal} onChange={(ev) => setLocVal(ev.target.value)} />
-            <button id="searchLocBtn" onClick={handleLoc}>
-              {language.code === "de" ? "Suchen" : "Search"}
-            </button>
+            <button id="searchLocBtn">{language.code === "de" ? "Suchen" : "Search"}</button>
           </div>
-        </div>
+        </form>
         <div className="filter location--distance">
           <label htmlFor="distInput" className="filter-label">
             {language.code === "de" ? "Umkreis (1 - 50 km):" : "Distance (1 - 50 km):"}
