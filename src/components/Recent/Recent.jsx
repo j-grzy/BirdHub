@@ -10,9 +10,9 @@ export default function Recent() {
       <div className="recent">
         <div className="recent-column">
           <RecentFilters />
-          <RecentResults />
         </div>
         <div className="map-column">
+          <RecentResults />
           <RecentMap />
         </div>
       </div>

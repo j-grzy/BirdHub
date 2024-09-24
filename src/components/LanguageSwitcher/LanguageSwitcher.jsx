@@ -1,16 +1,17 @@
-import React, {useContext, useState, useRef, useEffect} from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import "./LanguageSwitcher.css";
-import {LanguageContext} from "../../contexts/LanguageContext.jsx";
-import {FaAngleDown} from "react-icons/fa6";
-import {HiOutlineGlobeAlt} from "react-icons/hi2";
+import { LanguageContext } from "../../contexts/LanguageContext.jsx";
+import { FaAngleDown } from "react-icons/fa6";
+import { HiOutlineGlobeAlt } from "react-icons/hi2";
 
 export default function LanguageSwitcher() {
-  const {language, setLanguage, languageList} = useContext(LanguageContext);
+  const { language, setLanguage, languageList } = useContext(LanguageContext);
   const [showLangMenu, setShowLangMenu] = useState(false);
   const langContainerRef = useRef(null);
 
   function handleClick(lang) {
-    if (lang !== language) setLanguage(lang);
+    setLanguage(lang);
+    localStorage.setItem("language", JSON.stringify(lang));
   }
   function clickOutsideElement(ref) {
     useEffect(() => {

@@ -1,3 +1,4 @@
+import React, { useRef, useState, useEffect, useContext } from "react";
 import "./App.css";
 // import {Routes, Route} from "react-router-dom";
 // import Navbar from "./components/Navbar";
@@ -10,9 +11,23 @@ import Header from "./components/Header/Header.jsx";
 // import Games from "./components/Games";
 // import Weather from "./components/Weather";
 // import Species from "./components/Species";
-import LanguageProvider from "./contexts/LanguageContext";
+
+import { LanguageContext } from "./contexts/LanguageContext.jsx";
+import { ThemeContext } from "./contexts/ThemeContext.jsx";
 
 function App() {
+  /*   const { setTheme } = useContext(ThemeContext);
+  const { setLanguage } = useContext(LanguageContext);
+  useEffect(() => {
+    if (localStorage.getItem("theme")) {
+      setTheme(JSON.parse(localStorage.getItem("theme")));
+    } else {
+      setTheme({ display: { en: "dark", de: "dunkel" }, class: "dark" });
+    }
+    if (localStorage.getItem("language")) {
+      setLanguage(localStorage.getItem("language"));
+    }
+  }, []); */
   return (
     <>
       <div className="wrapper">
@@ -30,10 +45,8 @@ function App() {
           </Route>
         </Routes> */}
 
-        <LanguageProvider>
-          <Header />
-          <Main />
-        </LanguageProvider>
+        <Header />
+        <Main />
       </div>
     </>
   );

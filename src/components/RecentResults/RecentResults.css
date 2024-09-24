@@ -1,6 +1,12 @@
 .recent-results-container {
-  height: 30%;
-  flex-grow: 1;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 500;
+  width: 18rem;
+  max-height: 80%;
+  /*   height: 30%;
+  flex-grow: 1; */
   border-radius: 5px;
   display: flex;
   flex-direction: column;

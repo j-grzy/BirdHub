@@ -1,12 +1,12 @@
-import React, {useRef, useState, useEffect, useContext} from "react";
-import {RecentContext} from "../../contexts/RecentContext.jsx";
+import React, { useRef, useState, useEffect, useContext } from "react";
+import { RecentContext } from "../../contexts/RecentContext.jsx";
 import "./RecentResults.css";
 import ResultItem from "./ResultItem.jsx";
-import {LanguageContext} from "../../contexts/LanguageContext.jsx";
+import { LanguageContext } from "../../contexts/LanguageContext.jsx";
 
 export default function RecentResults() {
-  const {data, location, distance} = useContext(RecentContext);
-  const {language} = useContext(LanguageContext);
+  const { data, location, distance } = useContext(RecentContext);
+  const { language } = useContext(LanguageContext);
   return (
     <div className="recent-results-container">
       <div className="results-header">
@@ -34,15 +34,7 @@ export default function RecentResults() {
             })}
           </ul>
         ) : (
-          <div className="error-message">
-            {location
-              ? language.code === "de"
-                ? "Leider keine Suchergebnisse für deinen Standort mit diesen Einstellungen."
-                : "Sorry, no search results for your location and settings."
-              : language.code === "de"
-              ? "Wähle deinen Standort."
-              : "Choose your location."}
-          </div>
+          <div className="error-message">{location ? (language.code === "de" ? "Leider keine Suchergebnisse für deinen Standort mit diesen Einstellungen." : "Sorry, no search results for your location and settings.") : language.code === "de" ? "Wähle deinen Standort." : "Choose your location."}</div>
         )}
       </div>
     </div>

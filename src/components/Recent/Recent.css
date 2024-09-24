@@ -4,7 +4,7 @@
   height: 100%;
   padding: 1rem 2rem 2rem;
   gap: 1rem;
-  .recent-column {
+  /*   .recent-column {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -12,5 +12,12 @@
   }
   .map-column {
     flex: 1;
+  } */
+  .recent-column {
+    width: 20rem;
+  }
+  .map-column {
+    flex: 1;
+    position: relative;
   }
 }

@@ -1,19 +1,21 @@
-import {FaCircleHalfStroke} from "react-icons/fa6";
-import React, {useRef, useState, useEffect, useContext} from "react";
-import {ThemeContext} from "../../contexts/ThemeContext.jsx";
-import {LanguageContext} from "../../contexts/LanguageContext.jsx";
+import { FaCircleHalfStroke } from "react-icons/fa6";
+import React, { useRef, useState, useEffect, useContext } from "react";
+import { ThemeContext } from "../../contexts/ThemeContext.jsx";
+import { LanguageContext } from "../../contexts/LanguageContext.jsx";
 import "./ThemeSwitcher.css";
-import {FaAngleDown} from "react-icons/fa6";
+import { FaAngleDown } from "react-icons/fa6";
 
 export default function ThemeSwitcher() {
-  const {theme, setTheme, themeList} = useContext(ThemeContext);
-  const {language} = useContext(LanguageContext);
+  const { theme, setTheme, themeList } = useContext(ThemeContext);
+  const { language } = useContext(LanguageContext);
   const [showThemeMenu, setShowThemeMenu] = useState(false);
   const themeContainerRef = useRef(null);
 
   function handleClick(themeItem) {
-    if (themeItem.class !== theme.class) setTheme(themeItem);
+    setTheme(themeItem);
+    localStorage.setItem("theme", JSON.stringify(themeItem));
   }
+
   function clickOutsideElement(ref) {
     useEffect(() => {
       function handleClickOutside(ev) {
