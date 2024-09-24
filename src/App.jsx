@@ -12,22 +12,7 @@ import Header from "./components/Header/Header.jsx";
 // import Weather from "./components/Weather";
 // import Species from "./components/Species";
 
-import { LanguageContext } from "./contexts/LanguageContext.jsx";
-import { ThemeContext } from "./contexts/ThemeContext.jsx";
-
 function App() {
-  /*   const { setTheme } = useContext(ThemeContext);
-  const { setLanguage } = useContext(LanguageContext);
-  useEffect(() => {
-    if (localStorage.getItem("theme")) {
-      setTheme(JSON.parse(localStorage.getItem("theme")));
-    } else {
-      setTheme({ display: { en: "dark", de: "dunkel" }, class: "dark" });
-    }
-    if (localStorage.getItem("language")) {
-      setLanguage(localStorage.getItem("language"));
-    }
-  }, []); */
   return (
     <>
       <div className="wrapper">
