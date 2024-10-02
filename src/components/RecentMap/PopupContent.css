@@ -1,0 +1,32 @@
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  .species-com-name {
+    color: var(--dark-color-high);
+    .species-count {
+      color: var(--dark-color-medium);
+    }
+  }
+  .species-sci-name {
+    color: var(--dark-color-medium);
+    padding-bottom: 0.6rem;
+    border-bottom: var(--dark-border-thin);
+  }
+  .observ-date {
+    color: var(--dark-color-disabled);
+    display: flex;
+    gap: 1rem;
+  }
+  .loc-name {
+    color: var(--dark-color-disabled);
+  }
+  .item-info {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    .item-info--icon {
+      width: 16px;
+    }
+  }
+}

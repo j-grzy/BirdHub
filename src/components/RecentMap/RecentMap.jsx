@@ -1,35 +1,43 @@
-import React, { useRef, useState, useEffect, useContext } from "react";
+import React, {useRef, useState, useEffect, useContext} from "react";
 import "leaflet/dist/leaflet.css";
-import { MapContainer, Marker, Popup, TileLayer, ZoomControl, useMap } from "react-leaflet";
+import {MapContainer, Marker, Popup, TileLayer, ZoomControl, useMap} from "react-leaflet";
 import L from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import { MapLibreTileLayer } from "./MapLibreTileLayer.tsx";
-import { RecentContext } from "../../contexts/RecentContext.jsx";
-import { ThemeContext } from "../../contexts/ThemeContext.jsx";
+import {MapLibreTileLayer} from "./MapLibreTileLayer.tsx";
+import {RecentContext} from "../../contexts/RecentContext.jsx";
+import {ThemeContext} from "../../contexts/ThemeContext.jsx";
 import customMarker from "../../assets/icons/marker-icon.png";
 import customMarkerRetina from "../../assets/icons/marker-icon-2x.png";
 import customMarkerShadow from "../../assets/icons/marker-shadow.png";
 import "./RecentMap.css";
-import ResultItem from "../RecentResults/ResultItem.jsx";
+import PopupContent from "./PopupContent.jsx";
 
 export default function RecentMap() {
-  const { data, location, distance } = useContext(RecentContext);
-  const { theme } = useContext(ThemeContext);
+  const {data, location, distance} = useContext(RecentContext);
+  const {theme} = useContext(ThemeContext);
   const [mapStyleUrl, setMapStyleUrl] = useState("https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json");
-  const [mapStyleAttribution, setMapStyleAttribution] = useState('&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>');
+  const [mapStyleAttribution, setMapStyleAttribution] = useState(
+    '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
+  );
 
   useEffect(() => {
     if (theme.class === "dark") {
       setMapStyleUrl("https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json");
-      setMapStyleAttribution('&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>');
+      setMapStyleAttribution(
+        '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
+      );
     }
     if (theme.class === "light") {
       setMapStyleUrl("https://tiles.stadiamaps.com/styles/alidade_smooth.json");
-      setMapStyleAttribution('&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>');
+      setMapStyleAttribution(
+        '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
+      );
     }
     if (theme.class === "high-contrast") {
       setMapStyleUrl("https://tiles.stadiamaps.com/styles/stamen_toner.json");
-      setMapStyleAttribution('&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>');
+      setMapStyleAttribution(
+        '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
+      );
     }
   }, [theme]);
 
@@ -67,8 +75,7 @@ export default function RecentMap() {
         [-85.06, -180],
         [85.06, 180],
       ]}
-      scrollWheelZoom={true}
-    >
+      scrollWheelZoom={true}>
       <ZoomControl position="bottomright" />
       <ChangeView />
       <MapLibreTileLayer attribution={mapStyleAttribution} url={mapStyleUrl} />
@@ -76,10 +83,9 @@ export default function RecentMap() {
         {data.map((item, index) => (
           <Marker icon={myIcon} key={index} position={[item.lat, item.lng]}>
             <Popup maxWidth="100 px" maxHeight="auto">
-              <ul>
-                {/* TODO: merge items at exact same location to list in one popup; but keep marker-number for clustering */}
-                <ResultItem item={item} className={"result-item-popup"} />
-              </ul>
+              {/* TODO: merge items at exact same location to list in one popup; but keep marker-number for clustering 
+                <ul></ul>*/}
+              <PopupContent item={item} />
             </Popup>
           </Marker>
         ))}

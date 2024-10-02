@@ -6,7 +6,7 @@ import {CiLocationOn} from "react-icons/ci";
 export default function ResultItem({item, className}) {
   return (
     <li>
-      <div className={"result-item " + className}>
+      <div className="result-item">
         <div className="species-com-name">
           {item.comName} {item.howMany ? <span className="species-count">({item.howMany})</span> : null}
         </div>
