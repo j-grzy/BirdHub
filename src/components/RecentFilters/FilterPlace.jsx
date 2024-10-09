@@ -1,11 +1,11 @@
-import React, { useRef, useState, useEffect, useContext } from "react";
-import { RecentContext } from "../../contexts/RecentContext.jsx";
-import { LanguageContext } from "../../contexts/LanguageContext.jsx";
+import React, {useRef, useState, useEffect, useContext} from "react";
+import {RecentContext} from "../../contexts/RecentContext.jsx";
+import {LanguageContext} from "../../contexts/LanguageContext.jsx";
 import "./FilterPlace.css";
 
 export default function RecentFilters() {
-  const { setLocation, distance, setDistance } = useContext(RecentContext);
-  const { language } = useContext(LanguageContext);
+  const {setLocation, distance, setDistance} = useContext(RecentContext);
+  const {language} = useContext(LanguageContext);
   const [locVal, setLocVal] = useState("");
 
   function handleLoc(ev) {
@@ -16,6 +16,7 @@ export default function RecentFilters() {
         try {
           const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${param}&format=json&limit=5`);
           const result = await response.json();
+          //console.log(result[0]);
           setLocation(result[0]);
         } catch (error) {
           console.log(error);
