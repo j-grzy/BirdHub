@@ -9,7 +9,7 @@ export default function FilterTimeSpan() {
   const {language} = useContext(LanguageContext);
 
   function getData(speciesCode) {
-    const endpoint = "/ebirdData/one";
+    const endpoint = onlyNotable ? "/ebirdData/oneNotable" : "/ebirdData/one";
     const fetchParams = `?speciesCode=${speciesCode}&lat=${location.lat}&lng=${location.lon}&dist=${distance}&back=${timeSpan}&sppLocale=${language.code}`;
     // setLoading(true);
     async function getSpeciesData() {
@@ -18,7 +18,6 @@ export default function FilterTimeSpan() {
           method: "GET",
         });
         const result = await response.json();
-        //console.log(result);
         setData(result);
       } catch (error) {
         console.log(error);

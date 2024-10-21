@@ -13,8 +13,9 @@ export default function Recent() {
 
   useEffect(() => {
     if (location) {
-      const endpoint = "/ebirdData/all";
-      const fetchParams = `?notable=${onlyNotable}&lat=${location.lat}&lng=${location.lon}&dist=${distance}&back=${timeSpan}&sppLocale=${language.code}`;
+      //console.log(onlyNotable);
+      const endpoint = onlyNotable ? "/ebirdData/notable" : "/ebirdData/all";
+      const fetchParams = `?lat=${location.lat}&lng=${location.lon}&dist=${distance}&back=${timeSpan}&sppLocale=${language.code}`;
       async function getSpecies() {
         // setLoading(true);
         try {
@@ -22,7 +23,6 @@ export default function Recent() {
             method: "GET",
           });
           const result = await response.json();
-
           setSpeciesList(result);
         } catch (error) {
           console.log(error);
