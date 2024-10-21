@@ -1,11 +1,14 @@
 .filters-container {
+  display: flex;
+  flex-direction: column;
+  /* overflow: auto; */
   /*   max-height: 70%; */
   height: 100%;
   background-color: var(--dark-surface-01);
   border: var(--dark-border-thin);
   border-radius: 5px;
   box-shadow: var(--dark-shadow);
-  overflow: auto;
+
   .filter {
     padding: 1rem;
     .filter-label {

@@ -1,7 +1,14 @@
+.filter-species-container {
+  /* overflow-y: auto; */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 .filter-notable {
   display: flex;
   gap: 1rem;
   justify-content: space-around;
+
   .filter-notable--item {
     position: relative;
     cursor: pointer;
@@ -55,5 +62,36 @@
     input ~ .custom-radio {
       border-color: var(--dark-secondary);
     }
+  }
+}
+.filter-species {
+  margin: 1rem 0 0;
+  overflow-y: auto;
+  .species-list {
+    list-style: none;
+    display: inline-flex;
+    flex-wrap: wrap;
+    .species-list-item {
+      font-size: 0.8rem;
+      color: var(--dark-secondary);
+      font-weight: light;
+      border: 1px solid var(--dark-secondary-opaque);
+      border-radius: 10px;
+      padding: 0.2rem 0.4rem;
+      margin: 0.2em;
+      &:hover {
+        border-color: var(--dark-secondary);
+        cursor: pointer;
+      }
+    }
+  }
+  .error-message {
+    box-shadow: var(--dark-shadow);
+    border: 1px solid var(--dark-secondary);
+    border-radius: 5px;
+    background-color: var(--dark-secondary-opaque);
+
+    color: var(--dark-secondary);
+    padding: 1rem;
   }
 }
