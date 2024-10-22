@@ -20,9 +20,13 @@
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
-    .results-header--place {
+    .results-header--species.comname {
       color: var(--dark-color-high);
       font-size: 1.2rem;
+    }
+    .results-header--species.sciname {
+      color: var(--dark-color-medium);
+      font-size: 1rem;
     }
     .results-header--results {
       color: var(--dark-color-disabled);

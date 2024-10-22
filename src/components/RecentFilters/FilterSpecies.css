@@ -73,16 +73,21 @@
     flex-wrap: wrap;
     .species-list-item {
       font-size: 0.8rem;
-      color: var(--dark-secondary);
+      color: #907cbb;
       font-weight: light;
       border: 1px solid var(--dark-secondary-opaque);
       border-radius: 10px;
       padding: 0.2rem 0.4rem;
       margin: 0.2em;
       &:hover {
+        color: #b598f5;
         border-color: var(--dark-secondary);
         cursor: pointer;
       }
+    }
+    .species-list-item.selected {
+      color: black;
+      background-color: #b598f5;
     }
   }
   .error-message {
