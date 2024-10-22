@@ -1,11 +1,14 @@
+import {useContext, useEffect} from "react";
 import "./ResultItem.css";
 import {IoTimeOutline} from "react-icons/io5";
 import {CiCalendar} from "react-icons/ci";
 import {CiLocationOn} from "react-icons/ci";
+import {RecentContext} from "../../contexts/RecentContext.jsx";
 
-export default function ResultItem({item, className}) {
+export default function ResultItem({item}) {
+  const {selectedResultItem, setSelectedResultItem} = useContext(RecentContext);
   return (
-    <li>
+    <li className={item.locId === selectedResultItem.locId ? "selected" : ""} onClick={() => setSelectedResultItem(item)}>
       <div className="result-item">
         <div className="species-com-name">
           {item.comName} {item.howMany ? <span className="species-count">({item.howMany})</span> : null}

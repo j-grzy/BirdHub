@@ -13,6 +13,7 @@ export default function RecentProvider({children}) {
   const [selectedSpecies, setSelectedSpecies] = useState({});
 
   const [data, setData] = useState([]);
+  const [selectedResultItem, setSelectedResultItem] = useState("");
   // const [loading, setLoading] = useState(true);
 
   async function getSpeciesList(language) {
@@ -70,6 +71,8 @@ export default function RecentProvider({children}) {
         setSelectedSpecies,
         getSpeciesData,
         getSpeciesList,
+        selectedResultItem,
+        setSelectedResultItem,
       }}>
       {children}
     </RecentContext.Provider>

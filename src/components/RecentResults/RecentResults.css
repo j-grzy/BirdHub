@@ -35,7 +35,7 @@
   .results-inner {
     padding: 1rem;
     overflow: auto;
-    ul {
+    .result-item-list {
       list-style: none;
       display: flex;
       flex-direction: column;

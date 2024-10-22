@@ -1,4 +1,5 @@
 .result-item {
+  cursor: pointer;
   background-color: var(--dark-surface-02);
   border-radius: 5px;
   box-shadow: var(--dark-shadow);
@@ -34,4 +35,7 @@
       width: 16px;
     }
   }
+}
+.selected .result-item {
+  border-color: rgba(255, 255, 0, 0.4);
 }

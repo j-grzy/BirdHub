@@ -13,7 +13,7 @@ import "./RecentMap.css";
 import PopupContent from "./PopupContent.jsx";
 
 export default function RecentMap() {
-  const {data, location, distance} = useContext(RecentContext);
+  const {data, location, distance, selectedResultItem, selectedSpecies} = useContext(RecentContext);
   const {theme} = useContext(ThemeContext);
   const [mapStyleUrl, setMapStyleUrl] = useState("https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json");
   const [mapStyleAttribution, setMapStyleAttribution] = useState(
@@ -55,13 +55,24 @@ export default function RecentMap() {
   const ChangeView = () => {
     const map = useMap();
     useEffect(() => {
-      if (location) {
+      if (location && !selectedResultItem) {
         const bbox = L.latLng(parseFloat(location.lat), parseFloat(location.lon)).toBounds(parseFloat(distance) * 1000);
         map.flyToBounds(bbox);
       }
     }, [location, distance]);
     return null;
   };
+
+  const FocusSelectedMarker = () => {
+    const map = useMap();
+    useEffect(() => {
+      if (selectedResultItem) {
+        map.flyTo([parseFloat(selectedResultItem.lat), parseFloat(selectedResultItem.lng)], 13, [{duration: 0.25}]);
+      }
+    }, [selectedResultItem]);
+    return null;
+  };
+
   // TODO: track center-coords and zoomlevel on-map-change; on theme or language change, keep map view
   return (
     <MapContainer
@@ -78,17 +89,32 @@ export default function RecentMap() {
       scrollWheelZoom={true}>
       <ZoomControl position="bottomright" />
       <ChangeView />
+
       <MapLibreTileLayer attribution={mapStyleAttribution} url={mapStyleUrl} />
-      <MarkerClusterGroup>
+      <MarkerClusterGroup disableClusteringAtZoom={13} spiderfyOnMaxZoom={false}>
         {data.map((item, index) => (
-          <Marker icon={myIcon} key={index} position={[item.lat, item.lng]}>
+          <Marker
+            icon={myIcon}
+            key={index}
+            position={[item.lat, item.lng]}
+            ref={(ref) => {
+              setTimeout(() => {
+                if (item.locId === selectedResultItem.locId && item.speciesCode === selectedSpecies.speciesCode) {
+                  ref?.openPopup();
+                }
+              }, 300);
+            }}
+            eventHandlers={{
+              click: () => {
+                console.log("marker clicked");
+              },
+            }}>
             <Popup maxWidth="100 px" maxHeight="auto">
-              {/* TODO: merge items at exact same location to list in one popup; but keep marker-number for clustering 
-                <ul></ul>*/}
               <PopupContent item={item} />
             </Popup>
           </Marker>
         ))}
+        <FocusSelectedMarker />
       </MarkerClusterGroup>
     </MapContainer>
   );

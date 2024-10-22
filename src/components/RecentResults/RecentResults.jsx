@@ -5,8 +5,12 @@ import ResultItem from "./ResultItem.jsx";
 import {LanguageContext} from "../../contexts/LanguageContext.jsx";
 
 export default function RecentResults() {
-  const {data, location, distance, timespan, selectedSpecies, getSpeciesData, speciesList} = useContext(RecentContext);
+  const {data, location, distance, timespan, selectedSpecies, getSpeciesData, speciesList, setSelectedResultItem} = useContext(RecentContext);
   const {language} = useContext(LanguageContext);
+
+  useEffect(() => {
+    setSelectedResultItem("");
+  }, [selectedSpecies]);
   useEffect(() => {
     if (location && selectedSpecies) {
       getSpeciesData(language);
@@ -25,9 +29,9 @@ export default function RecentResults() {
       </div>
       <div className="results-inner">
         {data.length > 0 ? (
-          <ul>
+          <ul className="result-item-list">
             {data.map((item, index) => {
-              return <ResultItem key={index} item={item} className={"result-item-list"} />;
+              return <ResultItem key={index} item={item} />;
             })}
           </ul>
         ) : (
