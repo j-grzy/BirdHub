@@ -1,19 +1,16 @@
 import React, {useRef, useState, useEffect, useContext} from "react";
 import "leaflet/dist/leaflet.css";
-import {MapContainer, Marker, Popup, TileLayer, ZoomControl, useMap} from "react-leaflet";
+import {MapContainer, Marker, Popup, ZoomControl, useMap} from "react-leaflet";
 import L from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import {MapLibreTileLayer} from "./MapLibreTileLayer.tsx";
 import {RecentContext} from "../../contexts/RecentContext.jsx";
 import {ThemeContext} from "../../contexts/ThemeContext.jsx";
-import customMarker from "../../assets/icons/marker-icon.png";
-import customMarkerRetina from "../../assets/icons/marker-icon-2x.png";
-import customMarkerShadow from "../../assets/icons/marker-shadow.png";
 import "./RecentMap.css";
 import PopupContent from "./PopupContent.jsx";
 
 export default function RecentMap() {
-  const {data, location, distance, selectedResultItem, selectedSpecies} = useContext(RecentContext);
+  const {data, location, distance, selectedResultItem, setSelectedResultItem, selectedSpecies} = useContext(RecentContext);
   const {theme} = useContext(ThemeContext);
   const [mapStyleUrl, setMapStyleUrl] = useState("https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json");
   const [mapStyleAttribution, setMapStyleAttribution] = useState(
@@ -41,15 +38,20 @@ export default function RecentMap() {
     }
   }, [theme]);
 
-  const myIcon = L.icon({
-    iconUrl: customMarker,
-    iconRetinaUrl: customMarkerRetina,
-    iconSize: [25, 41],
-    iconAnchor: [12, 0],
-    popupAnchor: [0, 0],
-    shadowUrl: customMarkerShadow,
-    shadowSize: [41, 41],
-    shadowAnchor: [12, 0],
+  //TODO PNG Fallback
+  const defaultIcon = L.divIcon({
+    html: `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M128,16a88.1,88.1,0,0,0-88,88c0,75.3,80,132.17,83.41,134.55a8,8,0,0,0,9.18,0C136,236.17,216,179.3,216,104A88.1,88.1,0,0,0,128,16Zm0,56a32,32,0,1,1-32,32A32,32,0,0,1,128,72Z"/></svg>`,
+    className: "svg-icon",
+    iconSize: [40, 80],
+    iconAnchor: [20, 0],
+  });
+  const selectedIcon = L.divIcon({
+    html: `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M128,16a88.1,88.1,0,0,0-88,88c0,75.3,80,132.17,83.41,134.55a8,8,0,0,0,9.18,0C136,236.17,216,179.3,216,104A88.1,88.1,0,0,0,128,16Zm0,56a32,32,0,1,1-32,32A32,32,0,0,1,128,72Z"/></svg>`,
+    className: "svg-icon-selected",
+    iconSize: [40, 80],
+    iconAnchor: [20, 0],
   });
 
   const ChangeView = () => {
@@ -94,19 +96,12 @@ export default function RecentMap() {
       <MarkerClusterGroup disableClusteringAtZoom={13} spiderfyOnMaxZoom={false}>
         {data.map((item, index) => (
           <Marker
-            icon={myIcon}
+            icon={item.locId === selectedResultItem.locId && item.speciesCode === selectedSpecies.speciesCode ? selectedIcon : defaultIcon}
             key={index}
             position={[item.lat, item.lng]}
-            ref={(ref) => {
-              setTimeout(() => {
-                if (item.locId === selectedResultItem.locId && item.speciesCode === selectedSpecies.speciesCode) {
-                  ref?.openPopup();
-                }
-              }, 300);
-            }}
             eventHandlers={{
               click: () => {
-                console.log("marker clicked");
+                setSelectedResultItem(item);
               },
             }}>
             <Popup maxWidth="100 px" maxHeight="auto">

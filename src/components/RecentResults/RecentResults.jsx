@@ -3,9 +3,10 @@ import {RecentContext} from "../../contexts/RecentContext.jsx";
 import "./RecentResults.css";
 import ResultItem from "./ResultItem.jsx";
 import {LanguageContext} from "../../contexts/LanguageContext.jsx";
+import ScrollToSelectedListItem from "./ScrollToSelectedListItem";
 
 export default function RecentResults() {
-  const {data, location, distance, timespan, selectedSpecies, getSpeciesData, speciesList, setSelectedResultItem} = useContext(RecentContext);
+  const {data, location, distance, timespan, selectedSpecies, getSpeciesData, speciesList, selectedResultItem, setSelectedResultItem} = useContext(RecentContext);
   const {language} = useContext(LanguageContext);
 
   useEffect(() => {
@@ -31,7 +32,11 @@ export default function RecentResults() {
         {data.length > 0 ? (
           <ul className="result-item-list">
             {data.map((item, index) => {
-              return <ResultItem key={index} item={item} />;
+              return (
+                <ScrollToSelectedListItem key={index} isChosen={item === selectedResultItem}>
+                  <ResultItem key={index} item={item} />
+                </ScrollToSelectedListItem>
+              );
             })}
           </ul>
         ) : (
