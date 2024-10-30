@@ -8,7 +8,7 @@ import {RecentContext} from "../../contexts/RecentContext.jsx";
 export default function ResultItem({item}) {
   const {selectedResultItem, setSelectedResultItem} = useContext(RecentContext);
   return (
-    <li className={item.locId === selectedResultItem.locId ? "selected" : ""} onClick={() => setSelectedResultItem(item)}>
+    <li className={item.locId === selectedResultItem.locId && item.obsDt === selectedResultItem.obsDt ? "selected" : ""} onClick={() => setSelectedResultItem(item)}>
       <div className="result-item">
         <div className="species-com-name">
           {item.comName} {item.howMany ? <span className="species-count">({item.howMany})</span> : null}

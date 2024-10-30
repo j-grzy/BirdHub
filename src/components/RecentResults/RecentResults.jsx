@@ -16,7 +16,7 @@ export default function RecentResults() {
     if (location && selectedSpecies) {
       getSpeciesData(language);
     }
-  }, [selectedSpecies, location, distance, timespan, speciesList]);
+  }, [selectedSpecies, location, distance, timespan]);
   return (
     <div className="recent-results-container">
       <div className="results-header">

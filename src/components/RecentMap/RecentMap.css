@@ -81,7 +81,8 @@
   .leaflet-popup-content-wrapper {
     background-color: var(--dark-surface-01);
     box-shadow: var(--dark-shadow);
-    border: 1px solid rgba(255, 255, 0, 0.6);
+    border: 1px solid rgba(255, 255, 0, 0.4);
+    border-radius: 5px;
 
     .leaflet-popup-content {
       ul {
@@ -92,12 +93,12 @@
   .leaflet-popup-tip {
     background-color: var(--dark-surface-01);
     box-shadow: var(--dark-shadow);
-    border: 1px solid rgba(255, 255, 0, 0.6);
+    border: 1px solid rgba(255, 255, 0, 0.4);
   }
 }
 
 .result-item-popup {
   .item-info {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 }

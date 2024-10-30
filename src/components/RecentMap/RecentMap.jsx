@@ -39,6 +39,7 @@ export default function RecentMap() {
   }, [theme]);
 
   //TODO PNG Fallback
+  //TODO place iconMarker correctly
   const defaultIcon = L.divIcon({
     html: `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M128,16a88.1,88.1,0,0,0-88,88c0,75.3,80,132.17,83.41,134.55a8,8,0,0,0,9.18,0C136,236.17,216,179.3,216,104A88.1,88.1,0,0,0,128,16Zm0,56a32,32,0,1,1-32,32A32,32,0,0,1,128,72Z"/></svg>`,
@@ -69,7 +70,21 @@ export default function RecentMap() {
     const map = useMap();
     useEffect(() => {
       if (selectedResultItem) {
-        map.flyTo([parseFloat(selectedResultItem.lat), parseFloat(selectedResultItem.lng)], 13, [{duration: 0.25}]);
+        map.flyTo([parseFloat(selectedResultItem.lat), parseFloat(selectedResultItem.lng)], 14, [{duration: 0.25}]);
+      }
+    }, [selectedResultItem]);
+    return null;
+  };
+
+  const HandleMarkerClick = () => {
+    const map = useMap();
+    useEffect(() => {
+      if (selectedResultItem) {
+        map.eachLayer(function (layer) {
+          if (layer.options.name === "marker") {
+            layer.setIcon(defaultIcon);
+          }
+        });
       }
     }, [selectedResultItem]);
     return null;
@@ -83,7 +98,7 @@ export default function RecentMap() {
       zoom={13}
       zoomControl={false}
       minZoom={3}
-      maxZoom={19}
+      maxZoom={16} //19
       maxBounds={[
         [-85.06, -180],
         [85.06, 180],
@@ -93,10 +108,10 @@ export default function RecentMap() {
       <ChangeView />
 
       <MapLibreTileLayer attribution={mapStyleAttribution} url={mapStyleUrl} />
-      <MarkerClusterGroup disableClusteringAtZoom={13} spiderfyOnMaxZoom={false}>
+      <MarkerClusterGroup disableClusteringAtZoom={14} spiderfyOnMaxZoom={true} showCoverageOnHover={false}>
         {data.map((item, index) => (
           <Marker
-            icon={item.locId === selectedResultItem.locId && item.speciesCode === selectedSpecies.speciesCode ? selectedIcon : defaultIcon}
+            icon={item.locId === selectedResultItem.locId && item.obsDt === selectedResultItem.obsDt ? selectedIcon : defaultIcon}
             key={index}
             position={[item.lat, item.lng]}
             eventHandlers={{
@@ -104,6 +119,7 @@ export default function RecentMap() {
                 setSelectedResultItem(item);
               },
             }}>
+            <HandleMarkerClick />
             <Popup maxWidth="100 px" maxHeight="auto">
               <PopupContent item={item} />
             </Popup>
