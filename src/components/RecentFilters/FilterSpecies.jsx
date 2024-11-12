@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import {RecentContext} from "../../contexts/RecentContext.jsx";
 import {LanguageContext} from "../../contexts/LanguageContext.jsx";
 import "./FilterSpecies.css";
@@ -12,6 +12,11 @@ export default function FilterTimeSpan() {
     // const empty = {};
     // setSelectedSpecies((prev) => empty);
   }
+  useEffect(() => {
+    if (selectedSpecies) {
+      setSelectedSpecies(selectedSpecies);
+    }
+  }, [language]);
 
   return (
     <div className="filter filter-species-container">

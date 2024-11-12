@@ -6,7 +6,7 @@ import {LanguageContext} from "../../contexts/LanguageContext.jsx";
 import ScrollToSelectedListItem from "./ScrollToSelectedListItem";
 
 export default function RecentResults() {
-  const {data, location, distance, timespan, selectedSpecies, getSpeciesData, speciesList, selectedResultItem, setSelectedResultItem} = useContext(RecentContext);
+  const {data, location, distance, timespan, selectedSpecies, setSelectedSpecies, getSpeciesData, speciesList, selectedResultItem, setSelectedResultItem} = useContext(RecentContext);
   const {language} = useContext(LanguageContext);
 
   useEffect(() => {
@@ -16,7 +16,8 @@ export default function RecentResults() {
     if (location && selectedSpecies) {
       getSpeciesData(language);
     }
-  }, [selectedSpecies, location, distance, timespan]);
+  }, [selectedSpecies, location, distance, timespan, language]);
+
   return (
     <div className="recent-results-container">
       <div className="results-header">
