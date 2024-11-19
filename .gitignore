@@ -26,4 +26,4 @@ dist-ssr
 .env
 .env.dev
 .env.production
-.config.js
+config.js

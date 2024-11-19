@@ -1,22 +1,23 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {RecentContext} from "../../contexts/RecentContext.jsx";
 import {LanguageContext} from "../../contexts/LanguageContext.jsx";
 import "./FilterSpecies.css";
+import Loader from "../Loader/Loader.jsx";
 
-export default function FilterTimeSpan() {
-  const {onlyNotable, setOnlyNotable, speciesList, location, selectedSpecies, setSelectedSpecies} = useContext(RecentContext);
+export default function FilterSpecies() {
+  const {onlyNotable, setOnlyNotable, speciesList, location, selectedSpecies, setSelectedSpecies, distance, timeSpan, getSpeciesList} = useContext(RecentContext);
   const {language} = useContext(LanguageContext);
+  const [loading, setLoading] = useState(false);
 
   function handleChange(ev) {
     setOnlyNotable(ev.target.value);
-    // const empty = {};
-    // setSelectedSpecies((prev) => empty);
   }
+
   useEffect(() => {
-    if (selectedSpecies) {
-      setSelectedSpecies(selectedSpecies);
+    if (location) {
+      getSpeciesList(language, setLoading);
     }
-  }, [language]);
+  }, [location, distance, onlyNotable, timeSpan, language]);
 
   return (
     <div className="filter filter-species-container">
@@ -36,26 +37,30 @@ export default function FilterTimeSpan() {
       </div>
 
       <div className="filter-species">
-        {speciesList.length > 0 ? (
-          <ul className="species-list">
-            {speciesList.map((spec, index) => {
-              return (
-                <li key={index} className={"species-list-item " + (spec.speciesCode === selectedSpecies.speciesCode ? "selected" : "")} onClick={() => setSelectedSpecies(spec)}>
-                  {spec.comName}
-                </li>
-              );
-            })}
-          </ul>
+        {!loading ? (
+          speciesList.length > 0 ? (
+            <ul className="species-list">
+              {speciesList.map((spec, index) => {
+                return (
+                  <li key={index} className={"species-list-item " + (spec.speciesCode === selectedSpecies.speciesCode ? "selected" : "")} onClick={() => setSelectedSpecies(spec)}>
+                    {spec.comName}
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <div className="error-message">
+              {location
+                ? language.code === "de"
+                  ? "Leider keine Suchergebnisse für deinen Standort mit diesen Einstellungen."
+                  : "Sorry, no search results for your location and settings."
+                : language.code === "de"
+                ? "Wähle deinen Standort."
+                : "Choose your location."}
+            </div>
+          )
         ) : (
-          <div className="error-message">
-            {location
-              ? language.code === "de"
-                ? "Leider keine Suchergebnisse für deinen Standort mit diesen Einstellungen."
-                : "Sorry, no search results for your location and settings."
-              : language.code === "de"
-              ? "Wähle deinen Standort."
-              : "Choose your location."}
-          </div>
+          <Loader />
         )}
       </div>
     </div>

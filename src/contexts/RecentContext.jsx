@@ -1,5 +1,5 @@
 import {createContext, useState} from "react";
-import {BACKEND_URL} from "../config";
+import {API_URL} from "../config";
 
 export const RecentContext = createContext();
 
@@ -14,14 +14,13 @@ export default function RecentProvider({children}) {
 
   const [data, setData] = useState([]);
   const [selectedResultItem, setSelectedResultItem] = useState("");
-  // const [loading, setLoading] = useState(true);
 
-  async function getSpeciesList(language) {
+  async function getSpeciesList(language, setLoading) {
+    setLoading(true);
     const endpoint = onlyNotable ? "/ebirdData/notable" : "/ebirdData/all";
     const fetchParams = `?lat=${location.lat}&lng=${location.lon}&dist=${distance}&back=${timeSpan}&sppLocale=${language.code}`;
-    // setLoading(true);
     try {
-      const response = await fetch(`${BACKEND_URL}${endpoint}${fetchParams}`, {
+      const response = await fetch(`${API_URL}${endpoint}${fetchParams}`, {
         method: "GET",
       });
       const result = await response.json();
@@ -29,16 +28,16 @@ export default function RecentProvider({children}) {
     } catch (error) {
       console.log(error);
     } finally {
-      // setLoading(!loading);
+      setLoading(false);
     }
   }
 
-  async function getSpeciesData(language) {
+  async function getSpeciesData(language, setLoading) {
+    setLoading(true);
     const endpoint = onlyNotable ? "/ebirdData/oneNotable" : "/ebirdData/one";
     const fetchParams = `?speciesCode=${selectedSpecies.speciesCode}&lat=${location.lat}&lng=${location.lon}&dist=${distance}&back=${timeSpan}&sppLocale=${language.code}`;
-    //setLoading(true);
     try {
-      const response = await fetch(`${BACKEND_URL}${endpoint}${fetchParams}`, {
+      const response = await fetch(`${API_URL}${endpoint}${fetchParams}`, {
         method: "GET",
       });
       const result = await response.json();
@@ -46,7 +45,7 @@ export default function RecentProvider({children}) {
     } catch (error) {
       console.log(error);
     } finally {
-      // setLoading(!loading);
+      setLoading(false);
     }
   }
 
