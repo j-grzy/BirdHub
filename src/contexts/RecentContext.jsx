@@ -10,7 +10,7 @@ export default function RecentProvider({children}) {
   const [timeSpan, setTimeSpan] = useState(14);
   const [onlyNotable, setOnlyNotable] = useState("");
   const [speciesList, setSpeciesList] = useState([]);
-  const [selectedSpecies, setSelectedSpecies] = useState({});
+  const [selectedSpecies, setSelectedSpecies] = useState(null);
 
   const [data, setData] = useState([]);
   const [selectedResultItem, setSelectedResultItem] = useState("");

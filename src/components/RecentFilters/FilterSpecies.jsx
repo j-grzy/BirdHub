@@ -9,6 +9,8 @@ export default function FilterSpecies() {
   const {language} = useContext(LanguageContext);
   const [loading, setLoading] = useState(false);
 
+  const [currentSpecies, setCurrentSpecies] = useState(null);
+
   function handleChange(ev) {
     setOnlyNotable(ev.target.value);
   }
@@ -18,6 +20,12 @@ export default function FilterSpecies() {
       getSpeciesList(language, setLoading);
     }
   }, [location, distance, onlyNotable, timeSpan, language]);
+
+  useEffect(() => {
+    if (speciesList && currentSpecies) {
+      setSelectedSpecies(speciesList.find((item) => item.speciesCode === currentSpecies));
+    }
+  }, [speciesList]);
 
   return (
     <div className="filter filter-species-container">
@@ -42,7 +50,13 @@ export default function FilterSpecies() {
             <ul className="species-list">
               {speciesList.map((spec, index) => {
                 return (
-                  <li key={index} className={"species-list-item " + (spec.speciesCode === selectedSpecies.speciesCode ? "selected" : "")} onClick={() => setSelectedSpecies(spec)}>
+                  <li
+                    key={index}
+                    className={"species-list-item " + (spec.speciesCode === selectedSpecies?.speciesCode ? "selected" : "")}
+                    onClick={() => {
+                      setSelectedSpecies(spec);
+                      setCurrentSpecies(spec.speciesCode);
+                    }}>
                     {spec.comName}
                   </li>
                 );

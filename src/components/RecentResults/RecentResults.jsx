@@ -7,17 +7,13 @@ import ScrollToSelectedListItem from "./ScrollToSelectedListItem";
 import Loader from "../Loader/Loader.jsx";
 
 export default function RecentResults() {
-  const {data, location, distance, timespan, selectedSpecies, setSelectedSpecies, getSpeciesData, speciesList, selectedResultItem, setSelectedResultItem} = useContext(RecentContext);
+  const {data, location, distance, timespan, selectedSpecies, getSpeciesData, selectedResultItem, setSelectedResultItem} = useContext(RecentContext);
   const {language} = useContext(LanguageContext);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setSelectedResultItem("");
   }, [selectedSpecies]);
-
-  // useEffect(() => {
-  //   setSelectedSpecies((prev) => ({...selectedSpecies}));
-  // }, [language]);
 
   useEffect(() => {
     if (location && selectedSpecies) {
@@ -28,10 +24,8 @@ export default function RecentResults() {
   return (
     <div className="recent-results-container">
       <div className="results-header">
-        <span className="results-header--species comname">
-          {Object.keys(selectedSpecies).length > 0 ? <>{selectedSpecies.comName}</> : language.code === "de" ? "keine Art gewählt" : "No species selected"}
-        </span>
-        <span className="results-header--species sciname">{Object.keys(selectedSpecies).length > 0 && <>{selectedSpecies.sciName}</>}</span>
+        <span className="results-header--species comname">{selectedSpecies ? <>{selectedSpecies.comName}</> : language.code === "de" ? "keine Art gewählt" : "No species selected"}</span>
+        <span className="results-header--species sciname">{selectedSpecies && <>{selectedSpecies.sciName}</>}</span>
         <span className="results-header--results">
           {language.code === "de" ? "Beobachtungen:" : "Observations:"} {data.length}
         </span>
@@ -51,7 +45,7 @@ export default function RecentResults() {
             </ul>
           ) : (
             <div className="error-message">
-              {Object.keys(selectedSpecies).length > 0
+              {selectedSpecies
                 ? language.code === "de"
                   ? "Leider keine Beobachtungen für deinen Standort mit diesen Einstellungen."
                   : "Sorry, no recent observations for your location and settings."
