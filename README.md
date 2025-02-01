@@ -6,7 +6,7 @@ This was my first React project! While I’d probably structure things a bit dif
 
 BirdHub uses the eBird API from the Cornell Lab of Ornithology to fetch recent bird sightings near a location chosen by the user. Results are displayed as a list and as markers on an interactive map.
 
-![BirdHub Screenshot](https://github.com/j-grzy/BirdHub/blob/main/Screenshot-sm.png?raw=true)
+![BirdHub Screenshot](./Screenshot.png)
 
 I built the map with React Leaflet and used geo data from OpenStreetMap. To allow for custom map styles in the future, I implemented the Maplibre GL Leaflet plugin.
 
