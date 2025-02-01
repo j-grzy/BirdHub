@@ -1,9 +1,7 @@
 import {useContext, useEffect} from "react";
 import "./ResultItem.css";
-import {IoTimeOutline} from "react-icons/io5";
-import {CiCalendar} from "react-icons/ci";
-import {CiLocationOn} from "react-icons/ci";
 import {RecentContext} from "../../contexts/RecentContext.jsx";
+import {CalendarBlank, MapPin, Clock} from "@phosphor-icons/react";
 
 export default function ResultItem({item}) {
   const {selectedResultItem, setSelectedResultItem} = useContext(RecentContext);
@@ -18,18 +16,18 @@ export default function ResultItem({item}) {
           {item.obsDt ? (
             <>
               <span className="observ-date--date item-info">
-                <CiCalendar className="item-info--icon" />
+                <CalendarBlank size={32} className="item-info--icon" />
                 {item.obsDt.split(" ")[0]}
               </span>
               <span className="observ-date--time item-info">
-                <IoTimeOutline className="item-info--icon" />
+                <Clock size={32} className="item-info--icon" />
                 {item.obsDt.split(" ")[1]}
               </span>
             </>
           ) : null}
         </div>
         <div className="loc-name item-info">
-          <CiLocationOn className="item-info--icon" />
+          <MapPin size={32} className="item-info--icon" />
           {item.locName}
         </div>
       </div>

@@ -32,7 +32,8 @@
     gap: 1rem;
     align-items: center;
     .item-info--icon {
-      width: 16px;
+      width: 18px;
+      flex-shrink: 0;
     }
   }
 }
