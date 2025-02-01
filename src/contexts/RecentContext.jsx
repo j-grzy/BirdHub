@@ -23,8 +23,19 @@ export default function RecentProvider({children}) {
       const response = await fetch(`${API_URL}${endpoint}${fetchParams}`, {
         method: "GET",
       });
-      const result = await response.json();
-      setSpeciesList(result);
+
+      if (!response.ok) {
+        if (response.status === 429) {
+          const data = await response.json();
+          alert(`Rate limit exceeded: ${data.error}. Please try again later.`);
+        } else {
+          const errorData = await response.json();
+          console.error(errorData.error);
+        }
+      } else {
+        const result = await response.json();
+        setSpeciesList(result);
+      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -40,8 +51,19 @@ export default function RecentProvider({children}) {
       const response = await fetch(`${API_URL}${endpoint}${fetchParams}`, {
         method: "GET",
       });
-      const result = await response.json();
-      setData(result);
+
+      if (!response.ok) {
+        if (response.status === 429) {
+          const data = await response.json();
+          alert(`Rate limit exceeded: ${data.error}. Please try again later.`);
+        } else {
+          const errorData = await response.json();
+          console.error(errorData.error);
+        }
+      } else {
+        const result = await response.json();
+        setData(result);
+      }
     } catch (error) {
       console.log(error);
     } finally {
