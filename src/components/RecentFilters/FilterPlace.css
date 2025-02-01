@@ -9,3 +9,15 @@
   display: flex;
   gap: 1rem;
 }
+
+body.high-contrast {
+  #searchLocBtn {
+    background-color: var(--surface-01);
+    border: 1px solid var(--color-high);
+    color: var(--color-high);
+    border: 2px solid var(--color-high);
+  }
+  #searchLocBtn:hover {
+    background-color: var(--primary);
+  }
+}

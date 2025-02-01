@@ -6,13 +6,9 @@ import "./Recent.css";
 export default function Recent() {
   return (
     <div className="recent">
-      <div className="recent-column">
-        <RecentFilters />
-      </div>
-      <div className="map-column">
-        <RecentResults />
-        <RecentMap />
-      </div>
+      <RecentFilters />
+      <RecentResults />
+      <RecentMap />
     </div>
   );
 }

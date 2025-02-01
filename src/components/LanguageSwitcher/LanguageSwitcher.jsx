@@ -2,7 +2,8 @@ import React, {useContext, useState, useRef, useEffect} from "react";
 import "./LanguageSwitcher.css";
 import {LanguageContext} from "../../contexts/LanguageContext.jsx";
 import {FaAngleDown} from "react-icons/fa6";
-import {HiOutlineGlobeAlt} from "react-icons/hi2";
+// import {HiOutlineGlobeAlt} from "react-icons/hi2";
+import {CaretDown, Globe} from "@phosphor-icons/react";
 
 export default function LanguageSwitcher() {
   const {language, setLanguage, languageList} = useContext(LanguageContext);
@@ -31,11 +32,13 @@ export default function LanguageSwitcher() {
     <div className="lang-container" ref={langContainerRef}>
       <div className="langMenu-toggleButton" onClick={() => setShowLangMenu(!showLangMenu)}>
         <div className="lang--icon">
-          <HiOutlineGlobeAlt />
+          {/* <HiOutlineGlobeAlt /> */}
+          <Globe size={24} />
         </div>
-        <div className="lang--code">{language.code}</div>
+        <div className="lang--code hidden">{language.code}</div>
         <div className="lang--dropdown">
-          <FaAngleDown />
+          {/* <FaAngleDown /> */}
+          <CaretDown size={24} />
         </div>
       </div>
       {showLangMenu ? (

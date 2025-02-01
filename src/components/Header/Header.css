@@ -12,7 +12,7 @@ header {
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      color: var(--dark-secondary);
+      color: var(--primary);
       line-height: 1rem;
       .brand--logo {
         height: 3rem;
@@ -34,6 +34,33 @@ header {
       display: flex;
       gap: 2rem;
       align-items: center;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 1rem 1rem 0;
+
+    .header-inner {
+      align-items: center;
+      /* flex-direction: column; */
+      gap: 1rem;
+      .brand {
+        .brand--logo svg {
+          width: 2rem;
+        }
+        .brand--name {
+          font-size: 2rem;
+        }
+      }
+      .site-settings {
+        align-self: flex-end;
+        gap: 0.8rem;
+        .hidden {
+          display: none;
+        }
+      }
     }
   }
 }

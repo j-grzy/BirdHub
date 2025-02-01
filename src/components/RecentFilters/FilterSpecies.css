@@ -15,7 +15,7 @@
     display: flex;
     gap: 1rem;
     label {
-      color: var(--dark-color-medium);
+      color: var(--color-medium);
       position: relative;
       cursor: pointer;
     }
@@ -34,15 +34,15 @@
       left: 0;
       height: 1.2rem;
       width: 1.2rem;
-      background-color: var(--dark-surface-02);
-      border: var(--dark-border-input);
+      background-color: var(--surface-02);
+      border: var(--border-input);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     input[type="radio"]:checked ~ .custom-radio {
-      background-color: var(--dark-secondary);
+      background-color: var(--primary);
     }
 
     .custom-radio:after {
@@ -51,17 +51,36 @@
       width: 0.6rem;
       height: 0.6rem;
       border-radius: 50%;
-      background: var(--dark-surface-00);
-      border: var(--dark-border-input);
+      background: var(--surface-00);
+      border: var(--border-input);
     }
   }
   .filter-notable--item:hover {
     label {
-      color: var(--dark-secondary);
+      color: var(--primary);
     }
     input ~ .custom-radio {
-      border-color: var(--dark-secondary);
+      border-color: var(--primary);
     }
+  }
+}
+body.high-contrast {
+  .filter-notable--item:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.4rem;
+    label {
+      color: var(--color-high);
+    }
+    input ~ .custom-radio {
+      border-color: var(--color-high);
+    }
+  }
+  input[type="radio"]:checked + .custom-radio + label {
+    font-weight: bold;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.4rem;
   }
 }
 .filter-species {
@@ -77,13 +96,13 @@
       font-size: 0.8rem;
       color: #907cbb;
       font-weight: light;
-      border: 1px solid var(--dark-secondary-opaque);
+      border: 1px solid var(--primary-opaque-2);
       border-radius: 10px;
       padding: 0.2rem 0.4rem;
       margin: 0.2em;
       &:hover {
         color: #b598f5;
-        border-color: var(--dark-secondary);
+        border-color: var(--primary);
         cursor: pointer;
       }
     }
@@ -93,12 +112,32 @@
     }
   }
   .error-message {
-    box-shadow: var(--dark-shadow);
-    border: 1px solid var(--dark-secondary);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--primary);
     border-radius: 5px;
-    background-color: var(--dark-secondary-opaque);
+    background-color: var(--primary-opaque-2);
 
-    color: var(--dark-secondary);
+    color: var(--primary);
     padding: 1rem;
+  }
+}
+
+body.high-contrast {
+  .filter-species {
+    .species-list {
+      .species-list-item {
+        color: var(--color-high);
+
+        border: 1px solid var(--color-high);
+        cursor: pointer;
+        &:hover {
+          background-color: var(--primary);
+        }
+      }
+      .species-list-item.selected {
+        color: #fff;
+        background-color: #000;
+      }
+    }
   }
 }

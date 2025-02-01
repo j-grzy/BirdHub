@@ -1,31 +1,31 @@
 .result-item {
   cursor: pointer;
-  background-color: var(--dark-surface-02);
+  background-color: var(--surface-02);
   border-radius: 5px;
-  box-shadow: var(--dark-shadow);
-  border: var(--dark-border-thin);
+  box-shadow: var(--shadow);
+  border: var(--border-thin);
   padding: 0.6rem;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
   .species-com-name {
-    color: var(--dark-color-high);
+    color: var(--color-high);
     .species-count {
-      color: var(--dark-color-medium);
+      color: var(--color-medium);
     }
   }
   .species-sci-name {
-    color: var(--dark-color-medium);
+    color: var(--color-medium);
     padding-bottom: 0.6rem;
-    border-bottom: var(--dark-border-thin);
+    border-bottom: var(--border-thin);
   }
   .observ-date {
-    color: var(--dark-color-disabled);
+    color: var(--color-disabled);
     display: flex;
     gap: 1rem;
   }
   .loc-name {
-    color: var(--dark-color-disabled);
+    color: var(--color-disabled);
   }
   .item-info {
     display: flex;
@@ -36,6 +36,39 @@
     }
   }
 }
-.selected .result-item {
-  border-color: rgba(255, 255, 0, 0.4);
+
+body.dark .selected .result-item {
+  border-color: var(--secondary-opaque-4);
+}
+body.light .selected .result-item {
+  background-color: var(--primary-opaque-8);
+  .species-com-name {
+    color: #000;
+    .species-count {
+      color: var(--color-high);
+    }
+  }
+  .species-sci-name {
+    color: var(--color-high);
+    padding-bottom: 0.6rem;
+    border-bottom: var(--border-thin);
+  }
+  .observ-date {
+    color: var(--color-medium);
+    display: flex;
+    gap: 1rem;
+  }
+  .loc-name {
+    color: var(--color-medium);
+  }
+}
+
+body.light .result-item {
+  box-shadow: none;
+}
+
+body.high-contrast {
+  .selected .result-item {
+    background-color: var(--secondary);
+  }
 }

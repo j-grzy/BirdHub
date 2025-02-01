@@ -40,7 +40,6 @@ export default function FilterSpecies() {
           <input type="radio" name="onlyNotableRadio" id="onlyNotable-notable" value="/notable" checked={onlyNotable === "/notable"} onChange={(ev) => handleChange(ev)} />
           <span className="custom-radio"></span>
           <label htmlFor="onlyNotable-notable">{language.code === "de" ? "nur seltene" : "only notable"}</label>
-          {/* add explanantion here */}
         </div>
       </div>
 

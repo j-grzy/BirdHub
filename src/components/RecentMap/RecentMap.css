@@ -3,34 +3,34 @@
   width: 100%;
   position: relative;
   inset: 0;
-  background-color: var(--dark-surface-01);
-  border: var(--dark-border-thin);
+  background-color: var(--surface-01);
+  border: var(--border-thin);
   border-radius: 5px;
-  box-shadow: var(--dark-shadow);
+  box-shadow: var(--shadow);
   leaflet-control-zoom.leaflet-bar.leaflet-control {
-    box-shadow: var(--dark-shadow);
-    border: 2var (--dark-border-thin);
+    box-shadow: var(--shadow);
+    border: var (--border-thin);
   }
   a.leaflet-control-zoom-in {
-    background-color: var(--dark-surface-00);
-    border-bottom: var(--dark-border-thin);
-    color: var(--dark-color-medium);
+    background-color: var(--surface-00);
+    border-bottom: var(--border-thin);
+    color: var(--color-medium);
   }
   a.leaflet-control-zoom-out {
-    background-color: var(--dark-surface-00);
-    color: var(--dark-color-medium);
+    background-color: var(--surface-00);
+    color: var(--color-medium);
   }
   a.leaflet-control-zoom-in:hover {
-    color: var(--dark-secondary);
+    color: var(--primary);
   }
   a.leaflet-control-zoom-out:hover {
-    color: var(--dark-secondary);
+    color: var(--primary);
   }
   .leaflet-control-attribution.leaflet-control {
-    background-color: var(--dark-surface-00);
-    color: var(--dark-color-medium);
+    background-color: var(--surface-00);
+    color: var(--color-medium);
     a {
-      color: var(--dark-secondary);
+      color: var(--primary);
       opacity: 0.8;
     }
     a:hover {
@@ -38,7 +38,7 @@
     }
   }
   .leaflet-marker-icon.svg-icon {
-    fill: var(--dark-secondary);
+    fill: var(--primary);
     filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
   }
   .leaflet-marker-icon.svg-icon-selected {
@@ -46,9 +46,9 @@
     filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
   }
   .leaflet-marker-icon.marker-cluster.marker-cluster-small {
-    background-color: hwb(259 60% 4% / 0.8);
+    background-color: var(--primary-opaque-8);
     div {
-      background-color: hwb(259 60% 4% / 0.8);
+      background-color: var(--primary-opaque-8);
       span {
         font-size: 0.8rem;
         font-weight: bold;
@@ -57,9 +57,9 @@
     }
   }
   .leaflet-marker-icon.marker-cluster.marker-cluster-medium {
-    background-color: hwb(259 60% 4% / 0.8);
+    background-color: var(--primary-opaque-8);
     div {
-      background-color: hwb(259 60% 4% / 0.8);
+      background-color: var(--primary-opaque-8);
       span {
         font-size: 0.8rem;
         font-weight: bold;
@@ -68,9 +68,9 @@
     }
   }
   .leaflet-marker-icon.marker-cluster.marker-cluster-large {
-    background-color: hwb(259 60% 4% / 0.8);
+    background-color: var(--primary-opaque-8);
     div {
-      background-color: hwb(259 60% 4% / 0.8);
+      background-color: var(--primary-opaque-8);
       span {
         font-size: 0.8rem;
         font-weight: bold;
@@ -79,9 +79,9 @@
     }
   }
   .leaflet-popup-content-wrapper {
-    background-color: var(--dark-surface-01);
-    box-shadow: var(--dark-shadow);
-    border: 1px solid rgba(255, 255, 0, 0.4);
+    background-color: var(--surface-01);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--secondary-opaque-4);
     border-radius: 5px;
 
     .leaflet-popup-content {
@@ -91,14 +91,60 @@
     }
   }
   .leaflet-popup-tip {
-    background-color: var(--dark-surface-01);
-    box-shadow: var(--dark-shadow);
-    border: 1px solid rgba(255, 255, 0, 0.4);
+    background-color: var(--surface-01);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--secondary-opaque-4);
   }
 }
 
 .result-item-popup {
   .item-info {
     font-size: 1rem;
+  }
+}
+
+body.light {
+  .leaflet-popup-content-wrapper {
+    box-shadow: var(--shadow);
+    border: var(--border-thin);
+  }
+  .leaflet-popup-tip {
+    border: var(--border-thin);
+  }
+}
+
+body.high-contrast {
+  a.leaflet-control-zoom-in:hover {
+    color: var(--color-high);
+    background-color: var(--primary);
+  }
+  a.leaflet-control-zoom-out:hover {
+    color: var(--color-high);
+    background-color: var(--primary);
+  }
+  .leaflet-control-attribution.leaflet-control {
+    background-color: var(--surface-16);
+    color: var(--color-medium);
+    color: var(--primary);
+    a {
+      color: var(--primary);
+    }
+    a:hover {
+      opacity: 1;
+    }
+  }
+  .leaflet-popup-content-wrapper {
+    box-shadow: var(--shadow);
+    border: var(--border-thin);
+  }
+  .leaflet-popup-tip {
+    border: var(--border-thin);
+  }
+}
+
+@media (max-width: 899px) {
+  .recent-map {
+    height: 70vh;
+    min-height: 50%;
   }
 }
