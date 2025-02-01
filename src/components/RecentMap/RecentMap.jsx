@@ -60,7 +60,10 @@ export default function RecentMap() {
     useEffect(() => {
       if (location && !selectedResultItem) {
         const bbox = L.latLng(parseFloat(location.lat), parseFloat(location.lon)).toBounds(parseFloat(distance) * 1000);
-        map.flyToBounds(bbox);
+        map.flyToBounds(bbox, {
+          paddingTopLeft: [50, 50],
+          paddingBottomRight: [50, 50],
+        });
       }
     }, [location, distance]);
     return null;

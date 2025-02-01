@@ -1,7 +1,4 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Chewy&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Bungee&display=swap"); */
-
-@import url("https://fonts.googleapis.com/css2?family=Bowlby+One&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Bowlby+One&display=swap"); */
 header {
   padding: 2rem 2rem 0;
   .header-inner {
@@ -23,8 +20,6 @@ header {
       }
       .brand--name {
         font-size: 3rem;
-        /* font-family: "Chewy", system-ui; */
-        /* font-family: "Bungee", sans-serif; */
         font-family: "Bowlby One", sans-serif;
         font-weight: 400;
         font-style: normal;

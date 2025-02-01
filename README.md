@@ -16,15 +16,22 @@ Check out the live version of BirdHub [here] (Coming soon!).
 
 This project is still a work in progress, with a few things to add and improve:
 
-- Make it responsive
 - Make language picker and theme switcher accessible
-- Fix some smaller bugs
+- Implement leaflet gesture handling plugin
 - Improve overall UX design
-- Declutter CSS
-- Design and apply light mode
+- Declutter CSS and design a more consistent light and high contrast mode
 - Custom map styles for dark and light mode
-- Design high contrast mode
 - ... and a few more tweaks ;)
+
+---
+
+### Thank you for:
+
+- The bird data collected and provided by [eBird](https://www.ebird.org), the online database of bird distribution and abundance of the Cornell Lab of Ornithology
+- The beautiful [Phosphor Icons](https://phosphoricons.com) by Helena Zhang and Tobias Fried
+- [Bowlby One](https://fonts.google.com/specimen/Bowlby+One?query=bowlby) Font by Vernon Adams
+- Map data and tiles by [OpenMapTiles](https://openmaptiles.org) and [OpenStreetMap](https://www.openstreetmap.org/copyright)
+- Map styles by [Stadia Maps](https://stadiamaps.com)
 
 ---
 
