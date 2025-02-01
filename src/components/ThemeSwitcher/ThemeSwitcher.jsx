@@ -1,9 +1,7 @@
-import {FaCircleHalfStroke} from "react-icons/fa6";
 import React, {useRef, useState, useEffect, useContext} from "react";
 import {ThemeContext} from "../../contexts/ThemeContext.jsx";
 import {LanguageContext} from "../../contexts/LanguageContext.jsx";
 import "./ThemeSwitcher.css";
-import {FaAngleDown} from "react-icons/fa6";
 import {CaretDown, SubtractSquare} from "@phosphor-icons/react";
 
 export default function ThemeSwitcher() {
@@ -35,12 +33,10 @@ export default function ThemeSwitcher() {
     <div className="theme-switcher" ref={themeContainerRef}>
       <div className="theme-toggleButton" onClick={() => setShowThemeMenu(!showThemeMenu)}>
         <div className="theme--icon">
-          {/* <FaCircleHalfStroke /> */}
           <SubtractSquare size={24} />
         </div>
         <div className="theme hidden">{theme.display[language.code]}</div>
         <div className="theme--dropdown">
-          {/* <FaAngleDown /> */}
           <CaretDown size={24} />
         </div>
       </div>
