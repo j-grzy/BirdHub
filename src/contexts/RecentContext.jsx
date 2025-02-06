@@ -16,7 +16,10 @@ export default function RecentProvider({children}) {
   const [data, setData] = useState([]);
   const [selectedResultItem, setSelectedResultItem] = useState("");
 
+  const [rateLimitActive, setRateLimitActive] = useState(false);
+
   async function getSpeciesList(language, setLoading) {
+    if (rateLimitActive) return;
     setLoading(true);
     const endpoint = onlyNotable ? "/ebirdData/notable" : "/ebirdData/all";
     const fetchParams = `?lat=${location.lat}&lng=${location.lon}&dist=${distance}&back=${timeSpan}&sppLocale=${language.code}`;
@@ -24,7 +27,6 @@ export default function RecentProvider({children}) {
       const response = await fetch(`${API_URL}${endpoint}${fetchParams}`, {
         method: "GET",
       });
-
       if (!response.ok) {
         if (response.status === 429) {
           const data = await response.json();
@@ -47,6 +49,7 @@ export default function RecentProvider({children}) {
   }
 
   async function getSpeciesData(language, setLoading) {
+    if (rateLimitActive) return;
     setLoading(true);
     const endpoint = onlyNotable ? "/ebirdData/oneNotable" : "/ebirdData/one";
     const fetchParams = `?speciesCode=${selectedSpecies.speciesCode}&lat=${location.lat}&lng=${location.lon}&dist=${distance}&back=${timeSpan}&sppLocale=${language.code}`;
@@ -54,11 +57,9 @@ export default function RecentProvider({children}) {
       const response = await fetch(`${API_URL}${endpoint}${fetchParams}`, {
         method: "GET",
       });
-
       if (!response.ok) {
         if (response.status === 429) {
           const data = await response.json();
-
           if (data.retryAfter) {
             handleRateLimitExceeded(data.retryAfter);
           }
@@ -80,6 +81,10 @@ export default function RecentProvider({children}) {
   function handleRateLimitExceeded(retryAfter) {
     const expiresAt = Date.now() + retryAfter * 1000;
     Cookies.set("rate_limit_expires", expiresAt, {expires: retryAfter / 86400});
+    setRateLimitActive(true);
+    setTimeout(() => {
+      setRateLimitActive(false);
+    }, retryAfter * 1000);
   }
 
   return (
@@ -105,6 +110,7 @@ export default function RecentProvider({children}) {
         getSpeciesList,
         selectedResultItem,
         setSelectedResultItem,
+        rateLimitActive,
       }}>
       {children}
     </RecentContext.Provider>

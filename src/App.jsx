@@ -8,15 +8,15 @@ import RateLimitOverlay from "./components/RateLimitOverlay/RateLimitOverlay.jsx
 function App() {
   return (
     <>
-      <RateLimitOverlay />
-      <div className="wrapper">
-        <Header />
-        <main>
-          <RecentProvider>
+      <RecentProvider>
+        <RateLimitOverlay />
+        <div className="wrapper">
+          <Header />
+          <main>
             <Recent />
-          </RecentProvider>
-        </main>
-      </div>
+          </main>
+        </div>
+      </RecentProvider>
     </>
   );
 }

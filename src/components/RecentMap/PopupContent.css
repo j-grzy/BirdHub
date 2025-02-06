@@ -27,6 +27,7 @@
     align-items: center;
     .item-info--icon {
       width: 16px;
+      flex-shrink: 0;
     }
   }
 }
