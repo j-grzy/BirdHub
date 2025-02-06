@@ -1,5 +1,6 @@
 import {createContext, useState} from "react";
 import {API_URL} from "../config";
+import Cookies from "js-cookie";
 
 export const RecentContext = createContext();
 
@@ -27,7 +28,9 @@ export default function RecentProvider({children}) {
       if (!response.ok) {
         if (response.status === 429) {
           const data = await response.json();
-          alert(`Rate limit exceeded: ${data.error}. Please try again later.`);
+          if (data.retryAfter) {
+            handleRateLimitExceeded(data.retryAfter);
+          }
         } else {
           const errorData = await response.json();
           console.error(errorData.error);
@@ -55,7 +58,10 @@ export default function RecentProvider({children}) {
       if (!response.ok) {
         if (response.status === 429) {
           const data = await response.json();
-          alert(`Rate limit exceeded: ${data.error}. Please try again later.`);
+
+          if (data.retryAfter) {
+            handleRateLimitExceeded(data.retryAfter);
+          }
         } else {
           const errorData = await response.json();
           console.error(errorData.error);
@@ -69,6 +75,11 @@ export default function RecentProvider({children}) {
     } finally {
       setLoading(false);
     }
+  }
+
+  function handleRateLimitExceeded(retryAfter) {
+    const expiresAt = Date.now() + retryAfter * 1000;
+    Cookies.set("rate_limit_expires", expiresAt, {expires: retryAfter / 86400});
   }
 
   return (

@@ -67,7 +67,7 @@ body.high-contrast {
   --border-input: 2px solid #000;
 
   --primary: #b598f5;
-  --primary-opaque-2: #000;
+  --primary-opaque-2: hwb(259 60% 4% / 0.2);
   --primary-opaque-8: #b598f5;
   --secondary: rgba(255, 255, 0, 0.656);
   --secondary-opaque-4: rgba(255, 255, 0, 0.4);

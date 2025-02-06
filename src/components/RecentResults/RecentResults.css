@@ -58,3 +58,7 @@
     max-height: 80%;
   }
 }
+
+body.high-contrast .recent-results-container .error-message {
+  color: var(--color-high);
+}

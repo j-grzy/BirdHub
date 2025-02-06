@@ -139,5 +139,8 @@ body.high-contrast {
         background-color: #000;
       }
     }
+    .error-message {
+      color: var(--color-high);
+    }
   }
 }
